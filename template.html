@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .total {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .logo {
+            width: 80px;
+            height: 90px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <mate charest="utf-8" />
+    <title>Report</title>
+</head>
+
+<body>
+    <img class="logo" src="https://www.flaticon.com/svg/static/icons/svg/235/235253.svg">
+    <h1>INVOICE</h1>
+    <div>Date : {{headerData.date}}</div>
+    <div>Invoice No : {{headerData.invoiceNo}}</div>
+    <div>Total time: {{headerData.totalTime}}</div>
+    <div>Amount: {{headerData.amount}}</div>
+    <br>
+    <table>
+        <tr>
+            <th colspan="2">Job Details</th>
+        </tr>
+        <tr>
+            <td>Job title</td>
+            <td>{{jobDetails.jobTitle}}</td>
+        </tr>
+        <tr>
+            <td>Job provider</td>
+            <td>{{jobDetails.jobProvider}}</td>
+        </tr>
+        <tr>
+            <td>Job location</td>
+            <td>{{jobDetails.jobLocation}}</td>
+        </tr>
+        <tr>
+            <td>Start date</td>
+            <td>{{jobDetails.startDate}}</td>
+        </tr>
+        <tr>
+            <td>End date</td>
+            <td>{{jobDetails.endDate}}</td>
+        </tr>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <th>Employee name</th>
+            <th>Regular hour</th>
+            <th>Regular rate</th>
+            <th>Regular amount</th>
+            <th>OT hour</th>
+            <th>OT rate</th>
+            <th>OT amount</th>
+            <th>Amount</th>
+        </tr>
+        {{#each employeesData}}
+        <tr>
+            <td>{{this.employeeName}}</td>
+            <td>{{this.regularHour}}</td>
+            <td>{{this.regularRate}}</td>
+            <td>{{this.regularAmount}}</td>
+            <td>{{this.otHour}}</td>
+            <td>{{this.otRate}}</td>
+            <td>{{this.otAmount}}</td>
+            <td>{{this.amount}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+            <td colspan="7" class='total'>SUB TOTAL :</td>
+            <td><b>$ {{subTotal}}</b></td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>
