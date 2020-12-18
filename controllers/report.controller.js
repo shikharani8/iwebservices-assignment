@@ -38,18 +38,18 @@ const generateReport = (data) => {
 		endDate: data[0].end_date
 	}
 	const employeesData = [];
-	let subTotal = 0;
-	let totalTime = 0;
+	let subTotal = 0.0;
+	let totalTime = 0.0;
 	data.forEach(e => {
 		const employee = {
 			employeeName: e.user_name,
 			regularHour: e.regular_hour,
 			regularRate: e.regular_rate,
-			regularAmount: e.regular_amount,
+			regularAmount: e.regular_amount.toFixed(2),
 			otHour: 0,
 			otRate: 0,
 			otAmount: 0,
-			amount: `$ ${e.regular_amount}`
+			amount: `$ ${e.regular_amount.toFixed(2)}`
 		};
 		subTotal = subTotal + e.regular_amount;
 		totalTime = totalTime + parseFloat(e.regular_hour);
@@ -59,7 +59,7 @@ const generateReport = (data) => {
 		date: moment(new Date()).format('DD/ MM/ YYYY'),
 		invoiceNo: cryptoRandomString({length: 6}),
 		totalTime: totalTime,
-		amount: subTotal
+		amount: subTotal.toFixed(2)
 	};
 
 	const document = {
@@ -68,7 +68,7 @@ const generateReport = (data) => {
 			headerData: headerData,
 			jobDetails: jobDetails,
 			employeesData: employeesData,
-			subTotal: subTotal
+			subTotal: subTotal.toFixed(2)
 		},
 		path: "./report.pdf"
 	};
